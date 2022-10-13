@@ -19,21 +19,21 @@ let sport = '';
 const capitalUkraine = 'Київ';
 const capitalUSA = 'Вашингтон';
 const capitalUK = 'Лондон';
-const countryUkraine = 'Україна';
+const countryUkraine = 'України';
 const countryUSA = 'США';
-const countryUK = 'Великобританія';
+const countryUK = 'Великобританії';
 
 const football = 'футбол';
 const messi = 'Ліонель Мессі';
 const tennis = 'теніс';
 const svitolina = 'Еліна Світоліна';
-const figureSkating = 'Еліна Світоліна';
+const figureSkating = 'фігурне катання';
 const baiul = 'Оксана Баюл';
 
 const answerYear = 'Твій рік народження:';
 const answerCapitalCountry = 'Ти живеш у столиці';
 const answerCity = 'Ти живеш у місті';
-const answerSport = 'Круто! Хочеш стати';
+const answerSport = 'Круто! Хочеш стати як';
 
 const exit = 'Шкода, що Ви не захотіли ввести свій(є)';
 const exitYear = 'рік народження';
@@ -41,13 +41,62 @@ const exitCity = 'місто';
 const exitSport = 'улюблений вид спорту';
 
 let resultAnswer = '';
+
 do {
-    yearBirth = prompt(questionYearBirth);
+    yearBirth = +prompt(questionYearBirth);
 } while (isNaN(yearBirth))
 
 if (yearBirth) {
-    alert(answerYear);
+    resultAnswer = `${answerYear} ${yearBirth}`;
+    city = prompt(`
+    ${resultAnswer}
+    ${questionCity}`);
+
+    if (city) {
+        if (city === capitalUkraine) {
+            resultAnswer = `
+        ${resultAnswer}
+        ${answerCapitalCountry} ${countryUkraine}`;
+        } else if (city === capitalUSA) {
+            resultAnswer = `
+        ${resultAnswer}
+        ${answerCapitalCountry} ${countryUSA}`;
+        } else if (city === capitalUK) {
+            resultAnswer = `
+        ${resultAnswer}
+        ${answerCapitalCountry} ${countryUK}`;
+        } else {
+            resultAnswer = `
+        ${resultAnswer}
+        ${answerCity} ${city}`;
+        }
+    } else {
+        alert(`${exit} ${exitCity}`);
+    }
+
+    sport = prompt(`
+    ${resultAnswer}
+    ${questionSport}`);
+
+    if (sport) {
+        if (sport === football) {
+            resultAnswer = `
+            ${resultAnswer}
+            ${answerSport} ${messi}?`;
+        } else if (sport === tennis) {
+            resultAnswer = `
+            ${resultAnswer}
+            ${answerSport} ${svitolina}?`;
+        } else if (sport === figureSkating) {
+            resultAnswer = `
+            ${resultAnswer}
+            ${answerSport} ${baiul}?`;
+        }
+    } else {
+        alert(`${exit} ${exitSport}`);
+    }
 } else {
     alert(`${exit} ${exitYear}`);
 }
+alert(resultAnswer);
 
